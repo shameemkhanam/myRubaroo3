@@ -1,0 +1,21 @@
+@import '../../../../assets/myPartials/variables';
+
+mat-form-field {
+    width: 100%;
+}
+
+.saveBtn {
+    background-color: $blue-color;
+    color: white;
+
+    &:hover {
+        background-color: darken($blue-color, 10);
+    }
+}
+.addOptionBtn{
+    color: $blue-color;
+    font-weight: 500;
+    &:hover{
+        color: $secondary-color;
+    }
+}

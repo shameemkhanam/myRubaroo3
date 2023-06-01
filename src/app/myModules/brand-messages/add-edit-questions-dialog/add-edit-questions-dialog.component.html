@@ -1,0 +1,137 @@
+<h2 mat-dialog-title>Brand Message</h2>
+
+<div mat-dialog-content class="mat-typography p-3">
+    <form [formGroup]="brandMessageFormGroup" (ngSubmit)="saveQuestion()">
+        <div class="row">
+            <div class="col-md-8">
+                <mat-form-field appearance="outline">
+                    <mat-label>Your Question</mat-label>
+                    <input matInput placeholder="Question" formControlName="question">
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field color="accent" appearance="outline">
+                    <mat-label>Attachment Type</mat-label>
+                    <mat-select (selectionChange)="onAttachmentType($event)" matNativeControl
+                        formControlName="attachmentType">
+                        <mat-option *ngFor="let option of attachmentType" [value]="option.name">{{option.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <mat-form-field color="accent" appearance="outline">
+                    <mat-label>Answer Type</mat-label>
+                    <mat-select formControlName="answerType">
+                        <mat-option *ngFor="let option of allAnswerTypes" (click)="changeType(option.type)" [value]="option">
+                            {{option.type}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field color="accent" appearance="outline">
+                    <mat-label>Pharma Company</mat-label>
+                    <mat-select matNativeControl placeholder="Find Pharma Company" formControlName="pharmaCompanyId">
+                        <mat-option *ngFor="let option of allActivePharma"
+                            [value]="option._id">{{option.userName}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Points</mat-label>
+                    <input type="number" matInput placeholder="points" formControlName="points">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row " *ngIf="this.brandMessageFormGroup.controls['answerType'].valid">
+            <div class="col-md-8">
+                <form [formGroup]="optionsFormGroup"
+                    *ngIf="this.brandMessageFormGroup.controls['answerType'].value.type == 'Multi-select' || this.brandMessageFormGroup.controls['answerType'].value.type == 'Single-select' || this.brandMessageFormGroup.controls['answerType'].value.type == 'Yes/No Select'">
+                    <ng-container class="row"  formArrayName="options">
+                        <ng-container class="col-md-5" *ngFor="let n of options['controls'];let i=index">
+                            <ng-container [formGroupName]="i">
+                                <div class="d-flex">
+                                    <mat-form-field appearance="outline" class="w-100">
+                                        <mat-label>option {{i+1}}</mat-label>
+                                        <input formControlName="optionName" matInput
+                                            placeholder="option {{i+1}}">
+                                        <mat-icon *ngIf="i>0" matSuffix type="button" class="text-danger"
+                                            (click)="removeOptions(i)">close
+                                        </mat-icon>
+                                    </mat-form-field>
+                                </div>                            
+                            </ng-container>
+                        </ng-container>
+                    </ng-container>
+                    <p>New option : <button mat-button type="button" class="btn addOptionBtn" (click)="addOptions()"
+                            [disabled]="this.optionsFormGroup.invalid || options['controls'].length==5">Add</button></p>
+                    <br>                    
+                </form>
+            </div>
+        </div>
+        <!-- <div class="row" *ngIf="this.brandMessageFormGroup.controls['answerType'].value">
+            <div class="col-md-12">
+                <mat-checkbox formControlName="isQuestionComment" *ngIf="this.brandMessageFormGroup.controls['answerType'].value.type!== 'Yes/No Select'" [disabled]="this.brandMessageFormGroup.controls['answerType'].value.type == 'Text'" color="primary"> Is question open ended?</mat-checkbox>
+            </div>
+        </div> -->
+        <div class="row mb-4">
+            <div class="col-md-4" *ngIf="this.brandMessageFormGroup.controls['attachmentType'].value == 'Gif'">
+                <div class="d-flex align-items-center justify-content-center" style="border: 2px dashed gray; border-radius: 10px; height: 60px;">
+                    <button matRipple class="btn btn-outline-primary" type="button" (click)="inputGif.click()">Browse for File</button>
+                    <input hidden type="file" #inputGif (change)="onFileSelected($event.target['files'])" />
+                </div>
+            </div>
+            <div class="col-md-4" *ngIf="this.brandMessageFormGroup.controls['attachmentType'].value == 'Image'">
+                <div class="d-flex align-items-center justify-content-center" style="border: 2px dashed gray; border-radius: 10px; height: 60px;">
+                    <button matRipple class="btn btn-outline-primary" type="button" (click)="img.click()">Browse for File</button>
+                    <input multiple hidden type="file" #img (change)="uploadFile($event.target['files'])" />
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-1 ms-4" *ngFor="let file of imagePrieview; let i = index">
+                        <img [src]="file.imagePath" alt="Image" width="60" height="60" class="border">
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <!-- <div class="row mb-4" *ngIf="attachTypeImgGif">
+            <div class="col-md-4">
+                <div style="border: 2px dashed gray; border-radius: 10px; height: 60px;">
+                    <input type="file" multiple (change)="imgOrGifFilesSelected($event)" accept=".gif,image/x-png,image/jpeg">
+                </div>
+                <div formArrayName="imageOrgif" *ngIf="imageOrgif && imageOrgif.length">
+                    <div *ngFor="let photo of imageOrgif.controls; index as i">
+                        <div [formGroupName]="i">
+                            <img [src]="photo.value" class="card-img-top" height="180" alt="Image">
+                            <button type="button" (click)="removePhoto(i)" class="btn btn-danger remove-btn">x</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <div class="row">
+            <div class="col-md-4" *ngIf="this.brandMessageFormGroup.controls['attachmentType'].value == 'Video'">
+                <mat-form-field appearance="outline">
+                    <mat-label>Enter URL</mat-label>
+                    <input matInput placeholder="Link" formControlName="videoLink">
+                </mat-form-field>
+            </div>
+            <div class="col-md-8">
+                <mat-form-field appearance="outline">
+                    <mat-label>Comments</mat-label>
+                    <input matInput placeholder="Question" formControlName="comments">
+                </mat-form-field>
+            </div>
+        </div>
+
+
+        <div mat-dialog-actions class="p-2" [align]="'end'">
+            <button matRipple mat-dialog-close class="btn cancelBtn me-2">Cancel</button>
+            <button matRipple class="btn saveBtn" type="submit">{{editFlag? "Update" : "Save"}}</button>
+        </div>
+    </form>

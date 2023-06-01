@@ -1,0 +1,63 @@
+@import '../../../assets/myPartials/variables';
+
+div {
+    .main-heading {
+        height: 120px;
+        position: relative;
+        top: -20px;
+        padding: 5px 10px;
+        display: flex;
+        align-items: center;
+        background-color: $pg-heading-bg-color;
+        // border-bottom: 2px solid gray;
+    }
+
+    .card_container {
+        position: relative;
+        top: -48px;
+
+        .card {
+            // border-left: 3px solid red;
+            // border-top: 3px solid red;
+            width: 250px;
+
+            small {
+                color: $secondary-color;
+            }
+
+            i {
+                color: rgb(189, 186, 186);
+            }
+
+        }
+
+        .card1 {
+            border-top: 3px solid $primary-color;
+
+            .num1 {
+                color: $primary-color;
+            }
+        }
+
+        .card2 {
+            border-top: 3px solid $warn-color;
+            .num2 {
+                color: $warn-color;
+            }
+        }
+
+        .card3 {
+            border-top: 3px solid $secondary-color;
+            .num3 {
+                color: $secondary-color;
+            }
+        }
+
+        .card4 {
+            border-top: 3px solid $blue-color;
+            .num4 {
+                color: $blue-color;
+            }
+        }
+    }
+}

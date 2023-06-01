@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-md px-4 ">
+	
+	<span class="navbar-brand">
+		<img src="../../../../assets/images/logo-transparent.png" width="135px" height="30px" alt="">
+	</span>
+	<button class="navbar-toggler" type="button" aria-controls="navbarContent" [attr.aria-expanded]="!collapsed"
+		aria-label="Toggle navigation" (click)="collapsed = !collapsed">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="navbar-collapse " [class.collapse]="collapsed" id="navbarContent">
+		<ul class="navbar-nav ms-auto ">
+			<li class="nav-item" ngbDropdown >
+				<a class="nav-link text-light" tabindex="0" ngbDropdownToggle id="navbarDropdown1" role="button"> Admin </a>
+				<div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu">
+					<a ngbDropdownItem href="#" (click)="$event.preventDefault()">Profile</a>
+					<a ngbDropdownItem href="#" (click)="$event.preventDefault()">Update Password</a>
+				</div>
+			</li>
+			</ul>
+	</div>
+</nav>
+

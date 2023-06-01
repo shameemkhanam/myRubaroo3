@@ -1,0 +1,255 @@
+<form [formGroup]="detailsForm" (ngSubmit)="onUpdateClicked()">
+    <div mat-dialog-content class="mat-typography">
+        <mat-stepper linear #stepper>
+            <mat-step [stepControl]="step1form">
+                <div formGroupName="step1">
+                    <ng-template matStepLabel>Profile</ng-template>
+                    <h3 class="fw-bold">Profile Information</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Name</mat-label>
+                                <input matInput formControlName="name" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Gender</mat-label>
+                                <input matInput formControlName="gender" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Age</mat-label>
+                                <input matInput formControlName="age" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Email</mat-label>
+                                <input matInput formControlName="email" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Phone</mat-label>
+                                <input matInput formControlName="phone" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>State</mat-label>
+                                <input matInput formControlName="state" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>City</mat-label>
+                                <input matInput formControlName="city" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Pin Code</mat-label>
+                                <input matInput formControlName="pincode" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Refered By</mat-label>
+                                <input matInput formControlName="referedBy" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Firebase Id</mat-label>
+                                <input matInput formControlName="firebaseId" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <h3 class="fw-bold mt-3">Specialization & Qualification</h3>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Specialization 1</mat-label>
+                                <mat-select formControlName="specialization1">
+                                    <mat-option *ngFor="let spec of specializations" [value]="spec">{{ spec
+                                        }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Specialization 2</mat-label>
+                                <mat-select formControlName="specialization2">
+                                    <mat-option *ngFor="let spec of specializations" [value]="spec">{{ spec
+                                        }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Specialization 3</mat-label>
+                                <mat-select formControlName="specialization3">
+                                    <mat-option *ngFor="let spec of specializations" [value]="spec">{{ spec
+                                        }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Qualification</mat-label>
+                                <mat-select formControlName="qualification">
+                                    <mat-option *ngFor="let option of qualifications" [value]="option">{{ option
+                                        }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Registration Number</mat-label>
+                                <input matInput formControlName="registrationNo" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Experience in Years</mat-label>
+                                <input matInput formControlName="experience" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn text-primary" matStepperNext style="float: right">
+                        Next
+                    </button>
+                </div>
+            </mat-step>
+            <mat-step [stepControl]="step2form">
+                <div formGroupName="step2">
+                    <ng-template matStepLabel>Additional Information</ng-template>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Payment Options</mat-label>
+                                <mat-select matNativeControl formControlName="paymentOptions">
+                                    <mat-option value="transfer to Bank">Transfer to Bank</mat-option>
+                                    <mat-option value="amazon pay">Amazon Pay</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="isBankDetails">
+                        <div class="col-md-6">
+                            <mat-form-field  color="accent" appearance="outline">
+                                <mat-label>Bank Name</mat-label>
+                                <input matInput formControlName="bankName" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Account Holder Name</mat-label>
+                                <input matInput formControlName="accountHolderName" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="isBankDetails">
+                        <div class="col-md-6">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Account Number</mat-label>
+                                <input matInput formControlName="accountNo" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>IFSC Code</mat-label>
+                                <input matInput formControlName="ifscCode" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field color="accent" appearance="outline">
+                                <mat-label>Full UPI ID / Phone Number</mat-label>
+                                <input matInput formControlName="FullUpiIdPhoneNo" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <h3 class="fw-bold">User Uploads</h3>
+
+                            <!-- <input type="file"
+                            class="form-control" formControlName="imgurl"> -->
+                            <!-- <img id="imgid" height="200" width="200" formControlName="imgurl" class="img-rounded" [src]="imgSrc"
+                                alt="your image" /> -->
+
+                            <img  [src]=""  alt="" formControlName="imgurl"
+                                width="320px" height="250px" style="border: 1px solid black;">
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn text-primary" matStepperPrevious>Back</button>
+                        <button class="btn text-primary" matStepperNext style="float: right">
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </mat-step>
+            <mat-step [stepControl]="step3form">
+                <div formGroupName="step3">
+                    <ng-template matStepLabel>Verify</ng-template>
+                    <label id="example-radio-group-label" class="fw-bold me-5">Seniority Level</label>
+                    <mat-radio-group formControlName="level" color="primary" aria-labelledby="example-radio-group-label"
+                        class="example-radio-group">
+                        <mat-radio-button class="example-radio-button" value="L1" checked>
+                            L1
+                        </mat-radio-button>
+                        <mat-radio-button class="example-radio-button" value="L2">
+                            L2
+                        </mat-radio-button>
+                        <mat-radio-button class="example-radio-button" value="L3">
+                            L3
+                        </mat-radio-button>
+                    </mat-radio-group>
+                    <div>
+                        <button class="btn text-primary" matStepperPrevious>Back</button>
+                        <button class="btn btn-success" matStepperNext style="float: right">
+                            Update
+                        </button>
+                    </div>
+                </div>
+            </mat-step>
+        </mat-stepper>
+    </div>
+</form>
+<!-- <h3 mat-dialog-title>title</h3>
+
+<div mat-dialog-content>
+    <mat-horizontal-stepper>
+        <form [formGroup]="detailsForm">
+            <mat-step [stepControl]="step1">
+                <ng-template matStepLabel>Profile</ng-template>
+                <app-step1></app-step1>
+            </mat-step>
+            <mat-step [stepControl]="step2">
+                <ng-template matStepLabel>Additional Information</ng-template>
+                <app-step2></app-step2>
+            </mat-step>
+            <mat-step [stepControl]="step3">
+                <ng-template matStepLabel>Verify</ng-template>
+                <app-step3></app-step3>
+            </mat-step> 
+        </form>
+        
+    </mat-horizontal-stepper>
+</div>
+ -->

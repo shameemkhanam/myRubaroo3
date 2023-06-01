@@ -1,0 +1,60 @@
+@import '../../../assets/myPartials/variables';
+
+mat-toolbar {
+    background: $gradient-btn;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+
+    label {
+        font-size: 16px;
+    }
+}
+
+
+
+mat-sidenav-container {
+    background-color: #5f5dd625;
+    height: calc(205vh - 115vh);
+
+    .aligned-with-icon {
+        position: absolute;
+        margin-left: 10px;
+        /* optional */
+    }
+
+
+    mat-sidenav {
+        width: 200px;
+        background-color: $sidenav-background-color;
+        
+        mat-nav-list {
+
+            padding: 5px;
+
+            .is-active {
+                background-color: rgba(71, 70, 70, 0.514);
+                border-radius: 20px;
+            }
+
+            a:hover {
+                color: white;
+            }
+
+            i {
+                color: rgba(128, 128, 128, 0.747);
+            }
+
+            .sidenavText {
+                color: rgba(255, 255, 255, 0.658);
+                font-size: 14px;
+            }
+        }
+    }
+
+    mat-sidenav-content {
+        height: 100vh;
+    }
+
+}

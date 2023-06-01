@@ -1,0 +1,46 @@
+div .main-heading {
+  height: 120px;
+  position: relative;
+  top: -20px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 128, 0.0549019608);
+}
+div .card_container {
+  position: relative;
+  top: -48px;
+}
+div .card_container .card {
+  width: 250px;
+}
+div .card_container .card small {
+  color: #bb2dfd;
+}
+div .card_container .card i {
+  color: rgb(189, 186, 186);
+}
+div .card_container .card1 {
+  border-top: 3px solid #29c0c2;
+}
+div .card_container .card1 .num1 {
+  color: #29c0c2;
+}
+div .card_container .card2 {
+  border-top: 3px solid #FFB74D;
+}
+div .card_container .card2 .num2 {
+  color: #FFB74D;
+}
+div .card_container .card3 {
+  border-top: 3px solid #bb2dfd;
+}
+div .card_container .card3 .num3 {
+  color: #bb2dfd;
+}
+div .card_container .card4 {
+  border-top: 3px solid #1470ad;
+}
+div .card_container .card4 .num4 {
+  color: #1470ad;
+}/*# sourceMappingURL=dashboard.component.css.map */

@@ -1,0 +1,57 @@
+div .main-heading {
+  height: 120px;
+  position: relative;
+  top: -20px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 128, 0.0549019608);
+}
+
+.table_container {
+  background-color: white;
+  margin: 5px 5px;
+  border-radius: 5px;
+  padding: 0px;
+}
+.table_container mat-form-field {
+  font-size: 12px;
+}
+.table_container mat-form-field mat-label {
+  font-size: 12px;
+  color: gray;
+}
+.table_container table {
+  width: 100%;
+}
+.table_container table th {
+  font-size: 14px;
+}
+.table_container table .editBtn {
+  color: #bb2dfd;
+}
+.table_container table .viewBtn {
+  color: #1470ad;
+}
+.table_container table th {
+  color: #1470ad;
+  background-color: rgb(230, 230, 230);
+}
+.table_container .btn2 {
+  width: 200px;
+  background: linear-gradient(to right, #3498db, #1470ad);
+  border-radius: 5px;
+  color: white;
+}
+.table_container .btn2:hover {
+  color: #114a70;
+}
+.table_container .btn1 {
+  width: 200px;
+  border-radius: 5px;
+  color: #114a70;
+}
+.table_container .btn1:hover {
+  color: #114a70;
+  background-color: #bb2dfd;
+}/*# sourceMappingURL=brand-messages.component.css.map */

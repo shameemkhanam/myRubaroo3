@@ -1,0 +1,218 @@
+<div class="container-fluid m-0 p-0">
+    <div class="main-heading">
+        <h3 style="font-size: 24px;">DOCTORS MANAGEMENT</h3>
+    </div>
+    <div class="container-fluid ms-2 card_container d-flex align-items-center justify-content-center">
+        <div class="col-lg-3 col-sm-6 col-xs-12 mb-4">
+            <div class="card card1 shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row  align-items-center">
+                        <div class="col mr-2">
+                            <small class="fw-bold mb-1">
+                                NEW REGISTRATION</small>
+                            <div class="num1 h3 mt-2 mb-0 fw-bold ">{{newReg}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa-solid fa-user-plus fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-xs-12 mb-4">
+            <div class="card card2 shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row  align-items-center">
+                        <div class="col mr-2">
+                            <small class="fw-bold text-uppercase mb-1">
+                                PENDING DOCTORS</small>
+                            <div class="num2 h3 mt-2 mb-0 fw-bold text-gray-800">{{pendingDocs}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-clock fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-xs-12 mb-4">
+            <div class="card card3 shadow h-100 py-2" routerLink="update" style="cursor: pointer;">
+                <div class="card-body">
+                    <div class="row  align-items-center">
+                        <div class="col mr-2">
+                            <small class="fw-bold text-uppercase mb-1">
+                                PROFILE UPDATES</small>
+                            <div class="num3 h3 mt-2 mb-0 fw-bold text-gray-800">{{profileUpdates}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-user fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-xs-12 mb-4">
+            <div class="card card4 shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row  align-items-center">
+                        <div class="col mr-2">
+                            <small class="fw-bold text-uppercase mb-1">
+                                SPECIALIZATION</small>
+                            <div class="num4 h3 mt-2 mb-0 fw-bold text-gray-800">{{specializationCount}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa-solid fa-list fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid shadow table_container p-2">
+        <div class="white_box py-3 px-2">
+            <div class="table_heading d-flex align-items-center justify-content-between">
+                <h3 class="my-auto fw-bold">DOCTORS</h3>
+                <div class="buttons">
+                    <button class="btn btn1 btn-outline-primary"><i class="fa-solid fa-file-arrow-up me-2"></i>Upload
+                        Doctors</button>
+                    <button class="btn btn2 ms-3"><i class="fa-solid fa-file-export me-2"></i>Export CSV</button>
+                </div>
+            </div>
+            <div class="mat-elevation-z8">
+                <div class="row mt-3">
+                    <div class="col-md-4">
+                        <mat-form-field appearance="outline" class="ms-2 me-2">
+                            <mat-label>Filter by name, reference or phone no</mat-label>
+                            <input matInput (keyup)="applyFilter1($event)">
+                            <mat-icon matSuffix>search</mat-icon>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Choose a date</mat-label>
+                            <input [(ngModel)]="createdAt" matInput name="createdAt" (dateChange)="onFilter()"
+                                [matDatepicker]="picker">
+                                <mat-hint>MM/DD/YYYY</mat-hint>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-2 ps-0">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Location</mat-label>
+                            <mat-select [(ngModel)]="cityName" name="cityName" (selectionChange)="onFilter()">
+                                <mat-option *ngFor="let loc of citiesOptions" [value]="loc">
+                                    {{loc}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-2 ps-0">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Specialization</mat-label>
+                            <mat-select  [(ngModel)]="specialization" name="specialization"
+                                (selectionChange)="onSpecChange(specialization)">
+                                <mat-option *ngFor="let spec of specializationsWithId" [value]="spec">
+                                    {{spec['specialityName']}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-1">
+                        <mat-label [ngClass]="{'positive': status==true, 
+                            'negative': status != true}">{{status ? 'Verified' : 'Not Verified'}}</mat-label>
+                        <mat-slide-toggle [(ngModel)]="isVerified" [checked]='status' (change)="onStatusChange($event)"
+                            class="me-2"></mat-slide-toggle>
+                    </div>
+
+                </div>
+
+
+                <div>
+                    <table  mat-table matSort [dataSource]="dataSource" class="mt-3 my-3">
+
+                        <ng-container matColumnDef="userName">
+                            <th mat-header-cell mat-sort-header *matHeaderCellDef> NAME </th>
+                            <td mat-cell *matCellDef="let element"> {{element.userName | titlecase}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="specialization">
+                            <th mat-header-cell *matHeaderCellDef> SPECIALIZATION </th>
+                            <td mat-cell *matCellDef="let element"> {{getSpecializations(element)}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="level">
+                            <th mat-header-cell *matHeaderCellDef> LEVEL </th>
+                            <td mat-cell *matCellDef="let element"> {{element?.doctorsLevel?.level}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="superFactor">
+                            <th mat-header-cell *matHeaderCellDef> SUPER STATUS </th>
+                            <td mat-cell *matCellDef="let element"> {{element.superFactor}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="phoneNumber">
+                            <th mat-header-cell mat-sort-header *matHeaderCellDef> PHONE </th>
+                            <td mat-cell *matCellDef="let element"> {{element.phoneNumber}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="isVerified">
+                            <th mat-header-cell *matHeaderCellDef> STATUS </th>
+                            <td mat-cell *matCellDef="let element" [ngClass]="{'positive': element.isVerified==true, 
+                    'negative': element.isVerified != true}"> {{element.isVerified ? 'Verified': 'Not Verified'}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="referedBy">
+                            <th mat-header-cell mat-sort-header *matHeaderCellDef> REFERED BY</th>
+                            <td mat-cell *matCellDef="let element"> {{element.referedBy}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="createdAt">
+                            <th mat-header-cell *matHeaderCellDef> CREATED AT </th>
+                            <td mat-cell *matCellDef="let element"> {{element.createdAt | date : 'shortDate'}} </td>
+
+
+                        </ng-container>
+
+                        <ng-container matColumnDef="action">
+                            <th mat-header-cell *matHeaderCellDef> ACTION</th>
+                            <td mat-cell *matCellDef="let element">
+                                <div class="action-icons d-flex align-items-center justify-content-center">
+
+                                    <mat-icon aria-hidden="false" (click) = "onEdit(element)"
+                                        aria-label="Example edit icon" fontIcon="edit" role="button"
+                                        class="me-2 editBtn" placement="bottom" ngbTooltip="Edit"></mat-icon>
+
+                                    <mat-slide-toggle checked="checked" (toggleChange)="onDisableUser()"
+                                        class="me-2"></mat-slide-toggle>
+
+                                    <mat-icon aria-hidden="false" aria-label="Example preview icon" fontIcon="preview"
+                                        role="button" class="viewBtn" placement="bottom"
+                                        ngbTooltip="View Details"></mat-icon>
+                                </div>
+
+
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+                        <tr  mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        <tr class="mat-row" *matNoDataRow>
+                            <td class="mat-cell text-center text-danger p-4" [attr.colspan]="displayedColumns.length" style="font-size: 18px;">
+                                No data matching the filter.
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    <mat-paginator showFirstLastButtons class="my-5" #paginator [length]="100" [pageSize]="10"
+                        [pageSizeOptions]="[5, 10, 25, 50]" aria-label="Select page">
+                    </mat-paginator>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>

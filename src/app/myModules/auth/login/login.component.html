@@ -1,0 +1,55 @@
+<div class="container-fluid loginComp p-3 d-flex align-items-center justify-content-center">
+    <div class="container">
+      <div class="card text-black mainBox ">
+        <div class="row g-0 ">
+          <div class="col-md-6 ">
+            <div class="card-body p-md-5 mx-md-4">
+              <div class="text-center my-3">
+                <img class="mt-2" src="../../../../assets/images/logo.jpeg" style="width: 250px;" alt="logo">
+              </div>
+  
+              <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <div class="form-floating mb-3">
+                  <input formControlName="email" class="form-control " id="inputEmail" type="email"
+                    placeholder="name@example.com" />
+                  <label for="inputEmail"><i class="fa-solid fa-envelope me-3"></i>Email address</label>
+                  <span class="text-danger small-text"
+                    *ngIf="loginForm.get('email').getError('required') && loginForm.get('email').touched">email address
+                    is required.</span>
+                  <span class="text-danger small-text"
+                    *ngIf="loginForm.get('email').errors?.['email'] && !loginForm.get('email').valid">Enter a valid
+                    email.</span>
+                </div>
+  
+                <div class="form-floating mb-3">
+                  <input formControlName="password" class="form-control" id="inputPassword" type="password"
+                    placeholder="Password" />
+                  <label for="inputPassword"><i class="fa-solid fa-lock me-3"></i>Password</label>
+                  <span class="text-danger small-text"
+                    *ngIf="loginForm.get('password').touched && loginForm.get('password').getError('required')">password
+                    is required</span>
+                </div>
+  
+                <a class="small text-muted ps-2" href="password.html">Forgot Password?</a>
+  
+                <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                  <button type="submit" class="btn btn-ripple w-100 loginBtn rounded-pill ">Login</button>
+                </div>
+              </form>
+  
+            </div>
+          </div>
+          <div class="col-md-6 rightBox d-flex align-items-center justify-content-center ">
+            <ngb-carousel>
+              <ng-template ngbSlide *ngFor="let slide of slides">
+                <div class="picsum-img-wrapper p-5 text-center my-5">
+                  <h4>Welcome</h4>
+                  <p><small> vitae elit libero, a pharetra augue mollis interdum.</small></p>
+                </div>
+              </ng-template>
+            </ngb-carousel>          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

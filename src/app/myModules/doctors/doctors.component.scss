@@ -1,0 +1,135 @@
+@import '../../../assets/myPartials/variables';
+
+mat-form-field{
+    width: 100%;
+}
+div {
+    .main-heading {
+        height: 120px;
+        position: relative;
+        top: -20px;
+        padding: 5px 10px;
+        display: flex;
+        align-items: center;
+        background-color: $pg-heading-bg-color;
+        // border-bottom: 2px solid gray;
+    }
+
+    .card_container {
+        position: relative;
+        top: -48px;
+
+        .card {
+            // border-left: 3px solid red;
+            // border-top: 3px solid red;
+            width: 250px;
+
+            small {
+                color: $secondary-color;
+            }
+
+            i {
+                color: rgb(189, 186, 186);
+            }
+
+        }
+
+        .card1 {
+            border-top: 3px solid $primary-color;
+
+            .num1 {
+                color: $primary-color;
+            }
+        }
+
+        .card2 {
+            border-top: 3px solid $warn-color;
+
+            .num2 {
+                color: $warn-color;
+            }
+        }
+
+        .card3 {
+            border-top: 3px solid $secondary-color;
+
+            .num3 {
+                color: $secondary-color;
+            }
+        }
+
+        .card4 {
+            border-top: 3px solid $blue-color;
+
+            .num4 {
+                color: $blue-color;
+            }
+        }
+    }
+}
+
+.table_container {
+    background-color: white;
+    // width: 1042px;
+    margin:5px 5px;
+    border-radius: 5px;
+    padding: 0px;
+
+    mat-form-field{
+        font-size: 12px;
+        mat-label{
+            font-size: 12px;
+            color: gray;
+        }
+    }
+
+    table {
+        width: 100%;
+
+        th {
+            font-size: 14px;
+        }
+
+        .editBtn {
+            color: $secondary-color;
+        }
+
+        .viewBtn {
+            color: $blue-color;
+        }     
+        th {
+            color: $blue-color;
+            background-color: $table_header;
+        }
+    }
+
+    .positive {
+        color: green;
+    }
+
+    .negative {
+        color: red;
+    }
+
+    .btn2 {
+        width: 200px;
+        background: $gradient-btn-2;
+        border-radius: 5px;
+        color: white;
+
+        &:hover {
+            color: #114a70;
+        }
+    }
+
+    .btn1 {
+        width: 200px;
+        border-radius: 5px;
+        color: #114a70;
+
+        &:hover {
+            color: #114a70;
+            background-color: $secondary-color;
+        }
+    }
+}

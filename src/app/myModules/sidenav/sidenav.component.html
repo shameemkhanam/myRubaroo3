@@ -1,0 +1,118 @@
+<!-- <app-header class="shadow-lg"></app-header> -->
+
+<!-- toolbar -->
+<mat-toolbar>
+    <button mat-icon-button (click)="opened=!opened" class="example-icon"
+        aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span><img src="../../../assets/images/logo-transparent.png" width="130px" height="30px" alt="logo"></span>
+    <!-- <span class="example-spacer"></span> -->
+
+    <div class="ms-auto">
+        <div class="d-flex align-items-center justify-content-center">
+            <label>Admin</label>
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+        </div>
+
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+                <mat-icon>person</mat-icon>
+                <span>Profile</span>
+            </button>
+
+            <button mat-menu-item>
+                <mat-icon>lock</mat-icon>
+                <span>Update Password</span>
+            </button>
+
+            <button mat-menu-item>
+                <mat-icon>logout</mat-icon>
+                <span>Logout</span>
+            </button>
+        </mat-menu>
+    </div>
+
+
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav class="scroll" [(opened)]="opened" mode="side">
+        <mat-nav-list>
+
+            <a mat-list-item [routerLink]="['dashboard']" [routerLinkActive]="['is-active']">
+                <i class="fa-solid fa-gauge"></i>
+                <span class="aligned-with-icon sidenavText">Dashboard</span>
+            </a>
+
+            <a mat-list-item [routerLink]="['doctors']" [routerLinkActive]="['is-active']">
+                <i class="fa-solid fa-user-doctor"></i>
+                <span class="aligned-with-icon sidenavText">Doctors</span>
+            </a>
+
+            <a mat-list-item [routerLink]="['questions']" [routerLinkActive]="['is-active']">
+                <i class="fa-solid fa-message"></i>
+                <span class="aligned-with-icon sidenavText">Brand Messages</span>
+            </a>
+
+            <a mat-list-item [routerLinkActive]="['is-active']">
+                <i class="fa-solid fa-list"></i>
+                <span class="aligned-with-icon sidenavText">Curated List</span>
+            </a>
+
+            <a mat-list-item [routerLink]="['surveys']" [routerLinkActive]="['is-active']">
+                <i class="fa-solid fa-square-poll-vertical"></i>
+                <span class="aligned-with-icon sidenavText">Surveys</span>
+            </a>
+
+            <a mat-list-item [routerLinkActive]="['is-active']">
+                <i class="fa-solid fa-credit-card"></i>
+                <span class="aligned-with-icon sidenavText">Payments</span>
+            </a>
+
+            <a mat-list-item [routerLinkActive]="['is-active']">
+                <i class="fa-solid fa-marker"></i>
+                <span class="aligned-with-icon sidenavText">Points</span>
+            </a>
+
+            <a mat-list-item [routerLinkActive]="['is-active']">
+                <i class="fa-solid fa-prescription-bottle-medical"></i>
+                <span class="aligned-with-icon sidenavText">Pharma</span>
+            </a>
+
+            <a mat-list-item [routerLinkActive]="['is-active']">
+                <i class="fa-solid fa-user-secret"></i>
+                <span class="aligned-with-icon sidenavText">Administration</span>
+            </a>
+
+            <a mat-list-item [routerLinkActive]="['is-active']">
+                <i class="fa-solid fa-calculator"></i>
+                <span class="aligned-with-icon sidenavText">Audits</span>
+            </a>
+
+            <a mat-list-item [routerLinkActive]="['is-active']">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span class="aligned-with-icon sidenavText">Issues</span>
+            </a>
+
+            <a mat-list-item [routerLinkActive]="['is-active']">
+                <i class="fa-solid fa-bell"></i>
+                <span class="aligned-with-icon sidenavText">Notifications</span>
+            </a>
+
+            <a mat-list-item [routerLinkActive]="['is-active']">
+                <i class="fa-solid fa-flag"></i>
+                <span class="aligned-with-icon sidenavText">Report</span>
+            </a>
+
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <!-- <button mat-button (click)="opened=!opened">Toggle</button> -->
+        <!-- <mat-slide-toggle class="p-3" (click)="opened=!opened">Toggle Sidebar</mat-slide-toggle> -->
+        <router-outlet class="p-2"></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

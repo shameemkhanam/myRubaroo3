@@ -1,0 +1,75 @@
+<div class="container-fluid">
+    <div class="main-heading">
+        <h3 style="font-size: 24px;">DOCTORS MANAGEMENT / PROFILE UPDATES</h3>
+    </div>
+    <div class="container-fluid shadow table_container p-2">
+        <div class="white_box py-3">
+            <div class="table_heading d-flex align-items-center justify-content-between">
+                <h3 class="my-auto fw-bold">PROFILE UPDATES</h3>
+                <div class="buttons">
+                    <button class="btn btn1 btn-outline-primary"><i class="fa-solid fa-file-arrow-up me-2"></i>Upload
+                        Doctors</button>
+                    <button class="btn btn2 ms-3"><i class="fa-solid fa-file-export me-2"></i>Export CSV</button>
+                </div>
+            </div>
+            <div class="mat-elevation-z8">
+                <div>
+                    <table mat-table  [dataSource]="dataSource" class="mt-3 my-3">
+
+                        <ng-container matColumnDef="userName">
+                            <th mat-header-cell *matHeaderCellDef> NAME </th>
+                            <td mat-cell *matCellDef="let element"> {{element.doctorsDetail.userName}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="specialization">
+                            <th mat-header-cell *matHeaderCellDef> SPECIALIZATION </th>
+                            <td mat-cell *matCellDef="let element"> {{getSpecializations(element)}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="level">
+                            <th mat-header-cell *matHeaderCellDef> LEVEL </th>
+                            <td mat-cell *matCellDef="let element"> {{element.doctorsDetail.doctorsLevel.level}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="superFactor">
+                            <th mat-header-cell *matHeaderCellDef> SUPER POINTS </th>
+                            <td mat-cell *matCellDef="let element"> {{element.doctorsDetail.superFactor}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="phoneNumber">
+                            <th mat-header-cell  *matHeaderCellDef> PHONE </th>
+                            <td mat-cell *matCellDef="let element"> {{element.doctorsDetail.phoneNumber}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="isVerified">
+                            <th mat-header-cell *matHeaderCellDef> STATUS </th>
+                            <td mat-cell *matCellDef="let element" [ngClass]="{'positive': element.isVerified==true, 
+                    'negative': element.isVerified != true}"> {{element.isVerified ? 'Verified': 'Not Verified'}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="action">
+                            <th mat-header-cell *matHeaderCellDef> ACTION</th>
+                            <td mat-cell *matCellDef="let element">
+                                <div class="action-icons d-flex align-items-center justify-content-center">
+                                    <mat-icon aria-hidden="false" aria-label="Example preview icon" fontIcon="preview"
+                                        role="button" class="viewBtn" placement="bottom"
+                                        ngbTooltip="View Details"></mat-icon>
+                                </div>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                    <mat-paginator showFirstLastButtons class="my-5" #paginator [length]="100" [pageSize]="10"
+                        [pageSizeOptions]="[10, 25, 50, 100]" aria-label="Select page">
+                    </mat-paginator>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>

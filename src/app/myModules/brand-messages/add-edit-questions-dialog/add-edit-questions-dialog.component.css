@@ -1,0 +1,11 @@
+mat-form-field {
+  width: 100%;
+}
+
+.saveBtn {
+  background-color: #1470ad;
+  color: white;
+}
+.saveBtn:hover {
+  background-color: #0f527f;
+}/*# sourceMappingURL=add-edit-questions-dialog.component.css.map */

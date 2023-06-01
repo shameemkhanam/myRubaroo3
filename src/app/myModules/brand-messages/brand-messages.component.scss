@@ -1,0 +1,83 @@
+@import '../../../assets/myPartials/variables';
+
+div {
+    .main-heading {
+        height: 120px;
+        position: relative;
+        top: -20px;
+        padding: 5px 10px;
+        display: flex;
+        align-items: center;
+        background-color: $pg-heading-bg-color;
+        // border-bottom: 2px solid gray;
+    }
+}
+
+.table_container {
+    background-color: white;
+    // width: 1042px;
+    margin: 5px 5px;
+    border-radius: 5px;
+    padding: 0px;
+
+    mat-form-field {
+        font-size: 12px;
+
+        mat-label {
+            font-size: 12px;
+            color: gray;
+        }
+    }
+
+    table {
+        width: 100%;
+
+        th {
+            font-size: 14px;
+        }
+
+        .editBtn {
+            color: $secondary-color;
+            &:disabled{
+                opacity: 0.3;
+            }
+        }
+
+        .viewBtn {
+            color: red;
+            &:disabled{
+                opacity: 0.3;                
+            }
+        }
+
+        th {
+            color: $blue-color;
+            background-color: $table_header;
+        }
+       
+    }
+
+
+    .btn2 {
+        width: 200px;
+        background: $gradient-btn-2;
+        border-radius: 5px;
+        color: white;
+
+        &:hover {
+            color: #114a70;
+        }
+    }
+
+    .btn1 {
+        width: 200px;
+        border-radius: 5px;
+        color: #114a70;
+
+        &:hover {
+            color: #114a70;
+            background-color: $secondary-color;
+        }
+    }
+    
+}

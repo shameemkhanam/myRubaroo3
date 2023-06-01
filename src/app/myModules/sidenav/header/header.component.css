@@ -1,0 +1,14 @@
+nav {
+  background: linear-gradient(to right, #97f0de, #3498db, #1470ad);
+}
+nav .sidenav-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+nav .sidenav-btn:hover {
+  color: #bb2dfd;
+  border-radius: 30%;
+}/*# sourceMappingURL=header.component.css.map */
